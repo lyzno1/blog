@@ -1,39 +1,170 @@
 {
-  "plugins": null,
-  "categories": {},
-  "rules": {},
-  "settings": {
-    "jsx-a11y": {
-      "polymorphicPropName": null,
-      "components": {},
-      "attributes": {}
-    },
-    "next": {
-      "rootDir": []
-    },
-    "react": {
-      "formComponents": [],
-      "linkComponents": [],
-      "version": null,
-      "componentWrapperFunctions": []
-    },
-    "jsdoc": {
-      "ignorePrivate": false,
-      "ignoreInternal": false,
-      "ignoreReplacesDocs": true,
-      "overrideReplacesDocs": true,
-      "augmentsExtendsReplacesDocs": false,
-      "implementsReplacesDocs": false,
-      "exemptDestructuredRootsFromChecks": false,
-      "tagNamePreference": {}
-    },
-    "vitest": {
-      "typecheck": false
-    }
-  },
-  "env": {
-    "builtin": true
-  },
-  "globals": {},
-  "ignorePatterns": []
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"plugins": [
+		"eslint",
+		"typescript",
+		"unicorn",
+		"react",
+		"react-perf",
+		"jsx-a11y",
+		"nextjs",
+		"import",
+		"oxc",
+		"promise"
+	],
+	"categories": {
+		"correctness": "error",
+		"suspicious": "error",
+		"pedantic": "error",
+		"perf": "warn",
+		"style": "warn"
+	},
+	"env": {
+		"builtin": true,
+		"browser": true,
+		"es2024": true
+	},
+	"settings": {
+		"react": {
+			"formComponents": [],
+			"linkComponents": [],
+			"componentWrapperFunctions": []
+		},
+		"next": {
+			"rootDir": "apps/web"
+		},
+		"jsx-a11y": {
+			"polymorphicPropName": null,
+			"components": {},
+			"attributes": {}
+		}
+	},
+	"rules": {
+		"complexity": ["error", { "max": 15 }],
+		"no-console": ["error", { "allow": ["error", "warn"] }],
+		"no-empty": "error",
+		"no-empty-function": "error",
+		"no-param-reassign": "error",
+		"no-else-return": "error",
+		"no-useless-concat": "error",
+		"yoda": "error",
+		"default-param-last": "error",
+		"operator-assignment": "warn",
+		"no-magic-numbers": "off",
+		"sort-imports": "off",
+		"sort-keys": "off",
+		"func-style": "off",
+		"new-cap": "off",
+		"no-duplicate-imports": "off",
+		"no-ternary": "off",
+
+		"typescript/no-explicit-any": "error",
+		"typescript/no-non-null-assertion": "error",
+		"typescript/no-namespace": "error",
+		"typescript/only-throw-error": "error",
+		"typescript/no-floating-promises": "error",
+		"typescript/no-misused-promises": "error",
+		"typescript/no-inferrable-types": "error",
+		"typescript/no-unnecessary-template-expression": "error",
+		"typescript/array-type": ["error", { "default": "array" }],
+		"typescript/prefer-enum-initializers": "error",
+		"typescript/prefer-for-of": "error",
+		"typescript/require-await": "error",
+		"typescript/no-unsafe-assignment": "warn",
+		"typescript/strict-boolean-expressions": [
+			"warn",
+			{
+				"allowNullableBoolean": true,
+				"allowNullableObject": true,
+				"allowString": true,
+				"allowNumber": true
+			}
+		],
+
+		"unicorn/no-array-for-each": "error",
+		"unicorn/no-static-only-class": "error",
+		"unicorn/no-useless-undefined": "error",
+		"unicorn/no-lonely-if": "error",
+		"unicorn/prefer-date-now": "error",
+		"unicorn/prefer-array-flat-map": "error",
+		"unicorn/prefer-node-protocol": "error",
+		"unicorn/prefer-number-properties": "error",
+		"unicorn/throw-new-error": "error",
+		"unicorn/error-message": "error",
+		"unicorn/filename-case": [
+			"error",
+			{
+				"cases": {
+					"kebabCase": true,
+					"pascalCase": true
+				}
+			}
+		],
+
+		"oxc/no-accumulating-spread": "warn",
+		"oxc/no-barrel-file": "error",
+
+		"react/exhaustive-deps": "error",
+		"react/self-closing-comp": "error",
+		"react/react-in-jsx-scope": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/jsx-max-depth": "off",
+
+		"react-perf/jsx-no-new-object-as-prop": "off",
+		"react-perf/jsx-no-new-function-as-prop": "off",
+		"react-perf/jsx-no-new-array-as-prop": "off",
+		"react-perf/jsx-no-jsx-as-prop": "off",
+
+		"import/no-named-export": "off",
+		"import/prefer-default-export": "off",
+		"import/no-namespace": "off",
+		"import/no-unassigned-import": "off"
+	},
+	"overrides": [
+		{
+			"files": ["**/*.js", "**/*.mjs", "**/*.cjs"],
+			"rules": {
+				"typescript/no-explicit-any": "off",
+				"typescript/no-non-null-assertion": "off",
+				"typescript/no-namespace": "off",
+				"typescript/only-throw-error": "off",
+				"typescript/no-floating-promises": "off",
+				"typescript/no-misused-promises": "off",
+				"typescript/no-inferrable-types": "off",
+				"typescript/no-unnecessary-template-expression": "off",
+				"typescript/array-type": "off",
+				"typescript/prefer-enum-initializers": "off",
+				"typescript/prefer-for-of": "off",
+				"typescript/require-await": "off",
+				"typescript/no-unsafe-assignment": "off",
+				"typescript/strict-boolean-expressions": "off"
+			}
+		},
+		{
+			"files": ["**/*.d.ts"],
+			"rules": {
+				"typescript/no-namespace": "off",
+				"unicorn/filename-case": "off"
+			}
+		},
+		{
+			"files": ["apps/web/src/app/**"],
+			"rules": {
+				"oxc/no-barrel-file": "off"
+			}
+		},
+		{
+			"files": ["**/*.config.ts", "**/*.config.js", "**/*.config.mjs"],
+			"rules": {
+				"import/no-default-export": "off"
+			}
+		},
+		{
+			"files": ["apps/web/src/components/ui/**"],
+			"rules": {
+				"jsx-a11y/label-has-associated-control": "off"
+			}
+		}
+	],
+	"ignorePatterns": [".next", "dist", "build", "node_modules"]
 }
