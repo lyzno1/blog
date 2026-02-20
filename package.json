@@ -1,0 +1,35 @@
+{
+  "name": "blog",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "check-types": "pnpm -r check-types",
+    "dev:native": "pnpm --filter native dev",
+    "dev:web": "pnpm --filter web dev",
+    "db:push": "pnpm --filter @blog/db db:push",
+    "db:studio": "pnpm --filter @blog/db db:studio",
+    "db:generate": "pnpm --filter @blog/db db:generate",
+    "db:migrate": "pnpm --filter @blog/db db:migrate",
+    "db:local": "pnpm --filter @blog/db db:local",
+    "check": "oxlint && oxfmt --write"
+  },
+  "dependencies": {
+    "@blog/env": "workspace:*",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@blog/config": "workspace:*",
+    "@types/node": "^22.13.14",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "typescript": "catalog:"
+  },
+  "packageManager": "pnpm@10.30.0"
+}
